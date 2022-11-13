@@ -5,7 +5,7 @@
 Console.WriteLine("Hello, World!");
 
 //specify file name for reading
-string fileName = @"./2020- 2022HotelList.csv";
+string fileName = @"./2022HotelList.csv";
 {
 using (StreamReader reader = new StreamReader(fileName))
         {
