@@ -1,11 +1,12 @@
-﻿//using System;
-//using System.IO; 
+//using System;
+//using System.IO;
 
 // See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
 //specify file name for reading
-string fileName = @"./2022HotelList.csv";
+string fileName = @"./HotelList.csv";
+
 {
 using (StreamReader reader = new StreamReader(fileName))
         {
@@ -14,11 +15,30 @@ using (StreamReader reader = new StreamReader(fileName))
             String lineHeader = "Recipe(";
             string fileFooter = "),";
 
-
-
-
             using(StreamWriter writetext = new StreamWriter("output1.txt"))
             {
+                writetext.WriteLine("import Foundation");
+                writetext.WriteLine("enum Category: String, CaseIterable, Identifiable {");
+                writetext.WriteLine("    var id: String {self.rawValue}");
+                writetext.WriteLine("    case allInclusive = \"Top Picks\"       ");
+                writetext.WriteLine("    case Hotels2020 = \"2020 New Hotels\"   ");
+                writetext.WriteLine("    case Hotels2021 = \"2021 New Hotels\"   ");
+                writetext.WriteLine("    case Hotels2022 = \"2022 New Hotel\"    ");
+                writetext.WriteLine("}");
+                writetext.WriteLine("struct Recipe: Identifiable {");
+                writetext.WriteLine("    let id = UUID()");
+                writetext.WriteLine("    let name: String");
+                writetext.WriteLine("    let image: String");
+                writetext.WriteLine("    let description: String");
+                writetext.WriteLine("    let city: String");
+                writetext.WriteLine("    let country: String");
+                writetext.WriteLine("    let category: Category.RawValue");
+                writetext.WriteLine("    let airport: String");
+                writetext.WriteLine("    let url: String");
+                writetext.WriteLine("}");
+                writetext.WriteLine("extension Recipe {");
+                writetext.WriteLine("    static let all: [Recipe] = [");
+
                 while ((line = reader.ReadLine()) != null) {
                     //Console.WriteLine(line);
                     row = line.Split(',');
@@ -26,53 +46,19 @@ using (StreamReader reader = new StreamReader(fileName))
                         writetext.WriteLine(lineHeader);
                         writetext.WriteLine("name: \"" + row[0] + "\",");
                         writetext.WriteLine("image: \"" + row[1] + "\",");
-                        writetext.WriteLine("description: \"" + "Put Description here" + "\",");
+                        writetext.WriteLine("description: \"" + row[2] + "\",");
                         writetext.WriteLine("city: \"" + row[3] + ", " + row[4] + "\",");  //Write out City and State on same line as some places may not have a state
                         writetext.WriteLine("country: \"" + row[5] + "\",");
                         writetext.WriteLine("category: \"" + row[6] + "\",");
-                        writetext.WriteLine("airport: \"" + "Put Airport code here" + "\",");
-                        writetext.WriteLine("url: \"" + row[2]+ "\"");
+                        writetext.WriteLine("airport: \"" + row[7] + "\",");
+                        writetext.WriteLine("url: \"" + row[8]+ "\"");
                         writetext.WriteLine(fileFooter);
                 }
+
+                writetext.WriteLine("   ]");
+                writetext.WriteLine("}");
             }
         }
 }
 
-/*
-Recipe(
-            name: "Hotel Riu Palace Aruba",
-            image: "https://thetravelplannerscouple.com/wp-content/uploads/2021/04/aruba-palace-768x445.jpg",
-            description: "The 24-hour All Inclusive Hotel Riu Palace Aruba opens all year round and is located directly on the beautiful Palm Beach. RIU Palace is the most elegant category in the RIU hotel chain, with hotels that meet the highest standards in terms of luxury, excellence and sophistication, creating a unique experience. The location is ideal due to its proximity to Aruba Airport (10 km) and Oranjestad (11 km) and invites you to explore the area. The hotel has 450 cozily furnished rooms with free Wi-Fi and offers many amenities. Relax in our spa, or get in shape at the fitness center. 2 outdoor pools, 1 children's pool. Day and evening entertainment, as well as our discotheque in the neighboring Hotel Riu Palace Antillas. For lovers of gastronomy, we offer live cooking stations at our main buffet restaurant, Japanese and Italian, Fusion restaurants and Steakhouse, as well as 5 bars and our Capuchino patisserie & ice cream parlor.",
-            city: "Eagle Beach",
-            country: "Aruba",
-            category: "All Inclusive",
-            airport: "AUA",
-            url: "https://www.riu.com/en/hotel/aruba/palmbeach/hotel-riu-palace-aruba/"
-        ),
-*/
-
-
-//
-/*StreamReader sr = new StreamReader(@"./2020- 2022HotelList.csv");
-string line;
-string[] row = new string [5];
-string HotelName;
-string imageLink;
-string city;
-string state;
-string country;
-string openingDate;
-while ((line = sr.ReadLine()) != null)
-{
-    //Read in each line and assign each line to a var each line will be a different setion of XML
-    row = line.Split(',');
-    HotelName = row[0],
-    imageLink = row[1],
-    city = row[2],
-    state = row[3],
-    country = row[4],
-    openingDate = row[5]
-
-     //write out each line to new file
-}*/
 
