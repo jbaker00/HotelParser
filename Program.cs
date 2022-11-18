@@ -20,10 +20,10 @@ using (StreamReader reader = new StreamReader(fileName))
                 writetext.WriteLine("import Foundation");
                 writetext.WriteLine("enum Category: String, CaseIterable, Identifiable {");
                 writetext.WriteLine("    var id: String {self.rawValue}");
-                writetext.WriteLine("    case allInclusive = \"Top Picks\"       ");
-                writetext.WriteLine("    case Hotels2020 = \"2020 New Hotels\"   ");
-                writetext.WriteLine("    case Hotels2021 = \"2021 New Hotels\"   ");
-                writetext.WriteLine("    case Hotels2022 = \"2022 New Hotel\"    ");
+                writetext.WriteLine("    case beach = \"Beach\"       ");
+                writetext.WriteLine("    case mountain = \"Mountain\"   ");
+                writetext.WriteLine("    case city = \"City\"   ");
+                writetext.WriteLine("    case desert = \"Desert\"    ");
                 writetext.WriteLine("}");
                 writetext.WriteLine("struct Recipe: Identifiable {");
                 writetext.WriteLine("    let id = UUID()");
